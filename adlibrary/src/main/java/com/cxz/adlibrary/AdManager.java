@@ -1,6 +1,7 @@
 package com.cxz.adlibrary;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -14,6 +15,7 @@ import com.cxz.adlibrary.adapter.AdAdapter;
 import com.cxz.adlibrary.bean.AdInfo;
 import com.cxz.adlibrary.utils.AdDialogUtil;
 import com.cxz.adlibrary.utils.DisplayUtil;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.flyco.pageindicator.indicator.FlycoPageIndicaor;
 
 import java.util.List;
@@ -87,6 +89,24 @@ public class AdManager {
      * 广告的点击事件
      */
     private OnImageClickListener onImageClickListener = null;
+
+    /**
+     * 在 Application 中调用此方法来完成初始化操作
+     *
+     * @param context context
+     */
+    public static void init(Context context) {
+
+        Fresco.initialize(context);
+
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        DisplayUtil.density = dm.density;
+        DisplayUtil.densityDPI = dm.densityDpi;
+        DisplayUtil.screenWidthPx = dm.widthPixels;
+        DisplayUtil.screenHeightPx = dm.heightPixels;
+        DisplayUtil.screenWidthDip = DisplayUtil.px2dip(context, dm.widthPixels);
+        DisplayUtil.screenHeightDip = DisplayUtil.px2dip(context, dm.heightPixels);
+    }
 
     public AdManager(Activity context, List<AdInfo> adInfos) {
         this.mContext = context;
