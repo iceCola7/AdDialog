@@ -5,11 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.cxz.ad_library.AdDialog;
 import com.cxz.adlibrary.AdConstant;
 import com.cxz.adlibrary.AdManager;
 import com.cxz.adlibrary.bean.AdInfo;
 import com.cxz.adlibrary.transformer.RotateDownPageTransformer;
-import com.cxz.adlibrary.transformer.ZoomOutPageTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showAdDialog();
+            }
+        });
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdDialog.getInstance()
+                        .setImages(new int[]{R.mipmap.new_user_guide_1, R.mipmap.new_user_guide_2, R.mipmap.new_user_guide_3, R.mipmap.new_user_guide_4})
+                        .setCanceledOnTouchOutside(false)
+                        .setPageTransformer(new com.cxz.ad_library.transformer.RotateDownPageTransformer())
+                        .show(getSupportFragmentManager());
             }
         });
 
