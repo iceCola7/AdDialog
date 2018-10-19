@@ -99,7 +99,7 @@ public class AdDialog extends DialogFragment {
         return this;
     }
 
-    public AdDialog dissmiss() {
+    public AdDialog dismissDialog() {
         getDialog().dismiss();
         return this;
     }
@@ -121,11 +121,11 @@ public class AdDialog extends DialogFragment {
             getDialog().setCanceledOnTouchOutside(mIsCancel);
         }
         View view = inflater.inflate(R.layout.fragment_dialog, container);
-        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
+        final ViewPager viewPager = view.findViewById(R.id.viewpager);
+        CircleIndicator indicator = view.findViewById(R.id.indicator);
         for (int image : mImages) {
             View inflate = inflater.inflate(R.layout.item_page, null);
-            ImageView imageView = (ImageView) inflate.findViewById(R.id.iv_item_guide_img);
+            ImageView imageView = inflate.findViewById(R.id.iv_item_guide_img);
             Uri uri = new Uri.Builder().scheme("res").path(String.valueOf(image)).build();
             imageView.setImageURI(uri);
             pageViews.add(imageView);
@@ -197,7 +197,7 @@ public class AdDialog extends DialogFragment {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView(pageViews.get(position));
+            // container.removeView(pageViews.get(position));
         }
     }
 }
